@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ace="http://www.icefaces.org/icefaces/components">
+    <h:head>
+        <title>Login Page</title>
+    </h:head>
+    <h:body>
+          <h:form>
+            <ace:panel header="Login Form">
+                <aside class="marge">
+                    <ace:textEntry id="username" label="Username" labelPosition="left" value="#{loginBean.user.username}"
+                                   required="true"   requiredMessage="#{msg['required.username']}">
+                       <f:validateLength minimum="6" maximum="12" />
+                    </ace:textEntry> 
+                </aside>                        
+                <aside class="marge">
+                    <ace:textEntry id="password" label="Password" secret="true" labelPosition="left" value="#{loginBean.user.password}"
+                                    required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.password']}">
+                       <f:validator validatorId = "passwordValid" />
+                    </ace:textEntry>
+                </aside>    
+                <aside class="button" >
+                    <ace:pushButton value="Login" action="#{loginBean.isUserInBd()}" />
+                </aside>
+            </ace:panel>
+        </h:form>
+    </h:body>
+</html>
+
