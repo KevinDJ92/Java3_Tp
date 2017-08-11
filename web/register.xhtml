@@ -10,7 +10,7 @@
         <h:outputStylesheet library="css" name="styles.css"/>
     </h:head>
     <h:body>
-       <h:form>
+        <h:form enctype="multipart/form-data">
             <ace:panel header="Registration Form">
                 <aside class="marge">
                     <ace:textEntry id="username" label="Username" labelPosition="left" value="#{registerBean.user.username}"
@@ -30,7 +30,14 @@
                        <f:validator validatorId = "passwordValid" />
                     </ace:textEntry>
                 </aside>    
-                <aside class="button" >
+                
+<!--                 <aside class="marge">
+                     <h:inputFile value="#{registerBean.image}">
+                        <f:passThroughAttribute name="accept" value="image/png"/>
+                        <f:ajax event="change" listener="#{registerBean.doUpload()}" execute="@form" render="@form"/>
+                    </h:inputFile>  
+                </aside>   -->
+                <aside class="button">
                     <ace:pushButton value="Register" action="#{registerBean.userIsUnique}" />
                 </aside>
             </ace:panel>

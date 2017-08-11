@@ -1,11 +1,13 @@
 package com.entities;
 
+import javax.servlet.http.Part;
+
 public class User {
     private int id_user;
     private String username;
     private String email;
     private String password;
-
+    
     public User() {
     }
 
