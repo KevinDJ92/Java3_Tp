@@ -16,8 +16,12 @@
              age BETWEEN ${min_age} AND ${max_age} AND
              users.id_user != ${id_user}
             <if test="_parameter.containsKey('sex_preference')">
-              AND sex = '${sex_preference}'
-            </if>   
+              AND sex like '${sex_preference}'
+            </if> 
+                 AND users.id_user = (SELECT id_user FROM preferences
+                                       WHERE min_age <![CDATA[ <= ]]> ${age} AND
+                                       id_user = users.id_user 
+                                       LIMIT 2, 1)      
         </where>
     </select> 
 </mapper>

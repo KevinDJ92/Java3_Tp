@@ -18,14 +18,16 @@ public class User {
     public User() {
     }
 
-    public User(String username, String email, String password, String phone_number, int role, String sex, int age, Integer idImage) {
+    public User(String username, String email, String password, String phone_number, int id_role, String sex, 
+            int age, Integer id_image) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.phone_number = phone_number; 
-        this.id_role = role;
+        this.id_role = id_role;
         this.sex = sex; 
         this.age = age;
+        this.id_image = id_image;
     }
 
     public int getId_user() {
@@ -115,6 +117,4 @@ public class User {
     public void setId_city(Integer id_city) {
         this.id_city = id_city;
     }
-    
-   
 }

@@ -8,7 +8,7 @@ public class TestSelectUserByName {
         SqlSession session = ConnexionBD.getSession();
          
         User user = session.selectOne("com.mapper.UserMapper.getUserByName", "myusername"); 
-        System.out.println("\nid : " + user.getId_user() + "\nnom : " + user.getUsername()+ "\npassword : " + user.getPassword() +"\nemail : " + user.getEmail());      
+        System.out.println("\nid : " + user.getId_user() + "\nnom : " + user.getUsername() + "\npassword : " + user.getPassword() +"\nemail : " + user.getEmail());      
         session.close();
      }   
 }

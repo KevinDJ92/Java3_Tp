@@ -11,7 +11,6 @@ public class TestSearchMatchMapper {
         SqlSession session = ConnexionBD.getSession();
          
         Preferences preference = session.selectOne("com.mapper.SearchMatchMapper.getUserPreferences", 1); 
-        System.out.println("Passed-1");
         String sex_preference = null;
         
         // We need the user in the inner join because need to know the sex
@@ -22,12 +21,12 @@ public class TestSearchMatchMapper {
             sex_preference = preference.getSex_preference();  
         }
         
-        System.out.println("Passed-2");
         HashMap<String, Object> parms = new HashMap<String, Object>();   
            if (sex_preference != null){
                 parms.put("sex_preference", sex_preference);
            }
             parms.put("id_user", user.getId_user());
+            parms.put("age", user.getAge());
             parms.put("sex", user.getSex());
             parms.put("min_age", preference.getMin_age());
             parms.put("max_age", preference.getMax_age());      
