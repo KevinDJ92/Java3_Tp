@@ -12,7 +12,7 @@ public class User {
     private String sex;
     private int age;
     private Integer id_image;
-    private Collection<Preferences> preferencesCollection;
+    private Preferences preference;
     private Integer id_city;
     
     public User() {
@@ -102,14 +102,14 @@ public class User {
         this.id_image = id_image;
     }
 
-    public Collection<Preferences> getPreferencesCollection() {
-        return preferencesCollection;
+    public Preferences getPreference() {
+        return preference;
     }
 
-    public void setPreferencesCollection(Collection<Preferences> preferencesCollection) {
-        this.preferencesCollection = preferencesCollection;
+    public void setPreference(Preferences preference) {
+        this.preference = preference;
     }
-
+    
     public Integer getId_city() {
         return id_city;
     }
