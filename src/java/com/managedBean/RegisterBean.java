@@ -79,7 +79,6 @@ public class RegisterBean implements Serializable {
             e.printStackTrace();
         }
     }
-    
 
     public User getUser() {
         return user;

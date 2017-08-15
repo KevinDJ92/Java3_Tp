@@ -29,8 +29,7 @@ public class HashFunction {
     for (int i = 48; i <= 90; i++){  
        characters += String.valueOf(i); 
     }
-
-        
+    
     char[] text = new char[length];
     for (int i = 0; i < length; i++){
         text[i] = characters.charAt(rng.nextInt(characters.length()));

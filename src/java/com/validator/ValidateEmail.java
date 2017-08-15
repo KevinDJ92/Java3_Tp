@@ -14,7 +14,8 @@ public class ValidateEmail implements Validator{
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {   
         FacesMessage msg;
         String email = (String)value;
-        String pattern = "[a-zA-z0-9]+[_a-zA-z0-9\\.-]*[a-zA-z0-9]+@[a-zA-z0-9]+(\\.[a-z]{2,4})";
+        // The \\ in front of the . is to escape the special character therefore \\. means look for .
+        String pattern = "[a-zA-Z0-9]+[_a-zA-Z0-9\\.-]*[a-zA-Z0-9]+@[a-zA-Z0-9]+(\\.[a-z]{2,4})";
    
         if(!Pattern.matches(pattern, email)){
             msg = new FacesMessage("Email invalid");

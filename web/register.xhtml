@@ -30,8 +30,20 @@
                        <f:validator validatorId = "passwordValid" />
                     </ace:textEntry>
                 </aside>    
-                
-<!--                 <aside class="marge">
+                  <aside class="marge">
+                    <ace:textEntry id="phone_number" label="Phone Number" secret="true" labelPosition="left" value="#{registerBean.user.phone_number}"
+                                    required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.phone_number']}">
+                       <f:validator validatorId = "phoneNumberValid" />
+                    </ace:textEntry>
+                </aside>    
+                 <aside class="marge">
+                     <ace:simpleSelectOneMenu id="role" value="#{registerBean.user.id_role}" 
+                                              required="true" requiredMessage="#{msg['required.role']}">
+                        <f:selectItem itemLabel="Men" itemValue="1"/>
+                        <f:selectItem itemLabel="Women" itemValue="2"/>
+                     </ace:simpleSelectOneMenu>
+                </aside>           
+<!--           <aside class="marge">
                      <h:inputFile value="#{registerBean.image}">
                         <f:passThroughAttribute name="accept" value="image/png"/>
                         <f:ajax event="change" listener="#{registerBean.doUpload()}" execute="@form" render="@form"/>

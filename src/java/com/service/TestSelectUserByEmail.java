@@ -10,14 +10,6 @@ public class TestSelectUserByEmail {
         User user = session.selectOne("com.mapper.UserMapper.getUserByEmail", "kevin@hotmail.com"); 
         System.out.println("\nid : " +user.getId_user() + "\nnom : " + user.getUsername()+ "\npassword : " + user.getPassword() +"\nemail : " + user.getEmail());      
        
-        String characters = "";
-        
-        for (int i = 48; i <= 90; i++){  
-            characters += String.valueOf(i); 
-        }
-        
-        System.out.println("List of characters: " + characters);
-        
         session.close();
      }   
 }

@@ -4,14 +4,14 @@
   <configuration>
       <typeAliases>
           <typeAlias alias="User" type="com.entities.User"/>       
+          <typeAlias alias="Preferences" type="com.entities.Preferences"/>       
       </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
-            <!-- ici on définie le mode de connexion a la BD -->
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/testdb"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/dating_site_db"/>
                 <property name="username" value="root"/>
                 <property name="password" value="root"/>
             </dataSource>
@@ -19,5 +19,6 @@
     </environments>
       <mappers>
           <mapper resource="com/mapper/UserMapper.xml" />
+          <mapper resource="com/mapper/SearchMatchMapper.xml" />
     </mappers>
 </configuration>
