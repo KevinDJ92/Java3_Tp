@@ -1,7 +1,5 @@
 package com.entities;
 
-import java.util.Collection;
-
 public class User {
     private int id_user;
     private String username;
@@ -11,6 +9,7 @@ public class User {
     private Integer id_role;
     private String sex;
     private int age;
+    private int height;
     private Integer id_image;
     private Preferences preference;
     private Integer id_city;
@@ -19,7 +18,7 @@ public class User {
     }
 
     public User(String username, String email, String password, String phone_number, int id_role, String sex, 
-            int age, Integer id_image) {
+            int age, int height, Integer id_image) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -27,6 +26,7 @@ public class User {
         this.id_role = id_role;
         this.sex = sex; 
         this.age = age;
+        this.height = height;
         this.id_image = id_image;
     }
 
@@ -94,6 +94,14 @@ public class User {
         this.age = age;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+    
     public Integer getId_image() {
         return id_image;
     }
