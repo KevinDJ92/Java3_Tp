@@ -8,21 +8,23 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.Part;
 import org.icefaces.ace.component.checkboxbuttons.CheckboxButtons;
 
 
 @Named(value = "registerBean")
-@SessionScoped
+@RequestScoped
 public class RegisterBean implements Serializable {  
     private User user;
     private User usernameInDB;
@@ -31,6 +33,7 @@ public class RegisterBean implements Serializable {
     private String registerPage = "register";
     private String loginPage = "login";
     private String redirect = "?redirect=true";
+    private int choixLangue;
     
     private ArrayList<SelectItem> choix;
     private SelectItem selectItem;
@@ -111,6 +114,43 @@ public class RegisterBean implements Serializable {
         }
     }
 
+//     public void actionMethode(){
+//        FacesMessage msg = new FacesMessage("Inscription reussie");
+//        FacesContext.getCurrentInstance().addMessage(null, msg);
+//    }
+     
+    public void changeLangue() {
+        Locale lang = null;
+        
+        switch (choixLangue) {
+            case 0:
+                lang = Locale.ENGLISH;
+                break;
+            case 1:
+                lang = Locale.FRANCE;
+                break; 
+        }
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(lang);
+    }
+
+    public void changerLangueListener(ValueChangeEvent event){
+        Locale lang = null;
+        
+        System.out.println(event.getNewValue());
+        
+        int newValue = (int) event.getNewValue();
+        switch (newValue) {
+            case 0:
+                lang = Locale.ENGLISH;
+                break;
+            case 1:
+                lang = Locale.FRANCE;
+                break;   
+        }
+        
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(lang);
+    }
+     
     public User getUser() {
         return user;
     }
@@ -119,6 +159,15 @@ public class RegisterBean implements Serializable {
         this.user = user;
     }
 
+    public int getChoixLangue() {
+        return choixLangue;
+    }
+    
+    public void setChoixLangue(int choixLangue) {
+        this.choixLangue = choixLangue;
+    }
+    
+    
     public ArrayList<SelectItem> getChoix() {
         return choix;
     }
