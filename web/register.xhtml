@@ -52,7 +52,19 @@
                         <f:selectItem itemLabel="Women" itemValue="women"/>
                      </ace:simpleSelectOneMenu>
                 </aside> 
-                
+<!--                <aside class="marge">
+                    <ace:simpleSelectOneMenu value="#{registerBean.jour}">
+                        <f:selectItems value="#{registerBean.joursListe}"  />
+                    </ace:simpleSelectOneMenu>
+
+                    <ace:simpleSelectOneMenu value="#{registerBean.mois}">
+                        <f:selectItems value="#{registerBean.moisListe}"  />
+                    </ace:simpleSelectOneMenu>
+
+                    <ace:simpleSelectOneMenu value="#{registerBean.annee}">
+                        <f:selectItems value="#{registerBean.anneeListe}" />
+                    </ace:simpleSelectOneMenu>
+                </aside> -->
                 <aside class="marge">
                      <ace:simpleSelectOneMenu id="city" value="#{registerBean.user.id_city}">
                         <f:selectItems value="#{registerBean.choix}"/>
@@ -67,12 +79,12 @@
                      </ace:checkboxButtons>
                 </aside>  
                 
-<!--           <aside class="marge">
+                <aside class="marge">
                      <h:inputFile value="#{registerBean.image}">
                         <f:passThroughAttribute name="accept" value="image/png"/>
-                        <f:ajax event="change" listener="#{registerBean.doUpload()}" execute="@form" render="@form"/>
+                        <f:ajax event="change" listener="#{registerBean.doUpload()}" />
                     </h:inputFile>  
-                </aside>   -->
+                </aside>   
                 
                 <aside class="button">
                     <ace:pushButton value="Register" action="#{registerBean.userIsUnique}" />

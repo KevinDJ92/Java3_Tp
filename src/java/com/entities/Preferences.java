@@ -1,9 +1,6 @@
 package com.entities;
 
-import java.io.Serializable;
-
-public class Preferences implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Preferences {
     private Integer id_user;
     private Integer id_preference;
     private String sex_preference;

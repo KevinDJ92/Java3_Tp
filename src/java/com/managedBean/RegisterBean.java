@@ -21,7 +21,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.Part;
 import org.icefaces.ace.component.checkboxbuttons.CheckboxButtons;
-
+import org.joda.time.Days;
 
 @Named(value = "registerBean")
 @RequestScoped
@@ -37,9 +37,10 @@ public class RegisterBean implements Serializable {
     
     private ArrayList<SelectItem> choix;
     private SelectItem selectItem;
+    private SelectItem selectItemJour;
     
     private Part image;
-    
+    private Days days;
     private CheckboxButtons cbButtons;
     
     public RegisterBean() {
@@ -166,7 +167,6 @@ public class RegisterBean implements Serializable {
     public void setChoixLangue(int choixLangue) {
         this.choixLangue = choixLangue;
     }
-    
     
     public ArrayList<SelectItem> getChoix() {
         return choix;
