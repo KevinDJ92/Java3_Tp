@@ -3,21 +3,21 @@ package com.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
-public class Cities implements Serializable {
+public class City implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Integer idCity;
     private String name;
     private Collection<User> userCollection;
 
-    public Cities() {
+    public City() {
     }
 
-    public Cities(Integer idCity) {
+    public City(Integer idCity) {
         this.idCity = idCity;
     }
 
-    public Cities(Integer idCity, String name) {
+    public City(Integer idCity, String name) {
         this.idCity = idCity;
         this.name = name;
     }
