@@ -44,10 +44,12 @@ public class RegisterBean implements Serializable {
     private String password;
     private String charactersASCII;
     private static Random rand;
+    private List<String> heightList;
+    private int height;
     
     public RegisterBean() {
         user = new User();
-        
+        heightList = new ArrayList<>();
         List<City> listCities = CityManager.selectAllCities();
         
         choix = new ArrayList<>();
@@ -64,6 +66,9 @@ public class RegisterBean implements Serializable {
            charactersASCII += (char) i; 
         }
         
+        for (int h = 120; h <= 225; h++) {
+            heightList.add("" + h + " cm");
+        }
         
         cbButtons = new CheckboxButtons();  
         String[] values = {"3"};  
@@ -199,5 +204,13 @@ public class RegisterBean implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<String> getHeightList() {
+        return heightList;
+    }
+
+    public void setHeighList(List<String> heightList) {
+        this.heightList = heightList;
     }
 }
