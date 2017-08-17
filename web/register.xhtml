@@ -26,7 +26,20 @@
                                    required="true" requiredIndicator="(*)"  requiredMessage="#{msg['required.username']}">
                        <f:validateLength minimum="6" maximum="12" />
                     </ace:textEntry> 
-                </aside>                  
+                </aside>
+                <aside class="marge">
+                    <ace:textEntry id="firstname" label="#{msg.firstname}" labelPosition="left" value="#{registerBean.user.first_name}"
+                                   required="true" requiredIndicator="(*)"  requiredMessage="#{msg['required.username']}">
+                       <f:validateLength minimum="6" maximum="12" />
+                    </ace:textEntry> 
+                </aside>   
+                <aside class="marge">
+                    <ace:textEntry id="lastname" label="#{msg.lastname}" labelPosition="left" value="#{registerBean.user.last_name}"
+                                   required="true" requiredIndicator="(*)"  requiredMessage="#{msg['required.username']}">
+                       <f:validateLength minimum="6" maximum="12" />
+                    </ace:textEntry> 
+                </aside>   
+  
                  <aside class="marge">
                     <ace:textEntry id="email" label="#{msg.email}" labelPosition="left" value="#{registerBean.user.email}" 
                                     required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.email']}" >
@@ -38,7 +51,7 @@
                                     required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.password']}">
                        <f:validator validatorId = "passwordValid" />
                     </ace:textEntry>
-                </aside>    
+                </aside> 
                   <aside class="marge">
                     <ace:textEntry id="phone_number" label="#{msg.phone_number}" secret="true" labelPosition="left" value="#{registerBean.user.phone_number}"
                                     required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.phone_number']}">
