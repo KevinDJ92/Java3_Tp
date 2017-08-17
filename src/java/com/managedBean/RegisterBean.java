@@ -5,6 +5,7 @@ import com.entities.User;
 import com.manager.CityManager;
 import com.manager.UserManager;
 import com.security.HashFunction;
+import com.utils.DateConverter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -45,12 +46,12 @@ public class RegisterBean implements Serializable {
     private String charactersASCII;
     private static Random rand;
     private List<String> heightList;
-    private int height;
     
     public RegisterBean() {
         user = new User();
         heightList = new ArrayList<>();
         List<City> listCities = CityManager.selectAllCities();
+        user.setId_role(2);
         
         choix = new ArrayList<>();
         for (int i = 0; i < listCities.size(); i++){ 
@@ -66,7 +67,7 @@ public class RegisterBean implements Serializable {
            charactersASCII += (char) i; 
         }
         
-        for (int h = 120; h <= 225; h++) {
+        for (int h = 140; h <= 200; h++) {
             heightList.add("" + h + " cm");
         }
         
@@ -88,7 +89,15 @@ public class RegisterBean implements Serializable {
                 HashFunction hash = new HashFunction();
                 user.setHash_password(hash.getHash(user.getSalt_password()));
                 
-                UserManager.insertUser(user);
+                System.out.println("id_user: " + user.getId_user() + " username: " + user.getUsername() + 
+                                    " first_name" + user.getFirst_name() + " last_name " + user.getLast_name() +
+                                    " email " + user.getEmail() + " salt_password " + user.getSalt_password() +
+                                    " hash_password " + user.getHash_password() + " id_role " + user.getId_role() +
+                                    " sex " + user.getSex() + " date_of_birth " + user.getDate_of_birth() +
+                                    " height " + user.getHeight() + " id_city " + user.getId_city() + " phone_number "
+                                    + user.getPhone_number());
+                
+//                UserManager.insertUser(user);
                 namePage = loginPage + redirect;
             }
             else {
@@ -121,7 +130,11 @@ public class RegisterBean implements Serializable {
             
             byte[] imageBytes = null;
           
-           File f = new File("/Users/Kevin/Documents/Java3_tp/web/upload/" + image.getSubmittedFileName());
+            String imagePath = image.getSubmittedFileName();
+            
+            user.setUrl_profile_image(imagePath);
+            
+            File f = new File("/Users/Kevin/Documents/Java3_tp/web/upload/" + imagePath);
            f.createNewFile();
            
            FileOutputStream out = new FileOutputStream(f);
@@ -131,7 +144,7 @@ public class RegisterBean implements Serializable {
            while ((length = in.read(buffer)) > 0){
                out.write(buffer, 0, length);
            }
-           
+          
            out.close();
            in.close();
            

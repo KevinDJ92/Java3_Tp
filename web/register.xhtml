@@ -80,19 +80,18 @@
                          <ace:ajax/>
                      </ace:simpleSelectOneMenu>
                 </aside> 
+               
+                <aside class="marge">
+                     <ace:simpleSelectOneMenu id="height" value="#{registerBean.user.height}" >
+                         <f:selectItems value="#{registerBean.heightList}"/>
+                     </ace:simpleSelectOneMenu>
+                </aside>  
+                
                 <aside class="marge">
                      <ace:simpleSelectOneMenu id="city" value="#{registerBean.user.id_city}">
                         <f:selectItems value="#{registerBean.choix}"/>
                      </ace:simpleSelectOneMenu>
-                </aside>  
-                
-                 <aside class="marge">
-                     <ace:checkboxButtons id="agreements" binding="#{registerBean.cbButtons}" labelPosition ="right">
-                         <f:selectItem itemValue="1" itemLabel="1 choix" />
-                         <f:selectItem itemValue="2" itemLabel="2 choix" />
-                         <f:selectItem itemValue="3" itemLabel="3 choix" />    
-                     </ace:checkboxButtons>
-                </aside>  
+                </aside>    
                 
                 <aside class="marge">
                      <h:inputFile value="#{registerBean.image}">
@@ -100,6 +99,14 @@
                         <f:ajax event="change" listener="#{registerBean.doUpload()}" />
                     </h:inputFile>  
                 </aside>   
+                
+                <aside class="marge">
+                     <ace:checkboxButtons id="agreements" binding="#{registerBean.cbButtons}" labelPosition ="right">
+                         <f:selectItem itemValue="1" itemLabel="1 choix" />
+                         <f:selectItem itemValue="2" itemLabel="2 choix" />
+                         <f:selectItem itemValue="3" itemLabel="3 choix" />    
+                     </ace:checkboxButtons>
+                </aside>  
                 
                 <aside class="button">
                     <ace:pushButton value="Register" action="#{registerBean.userIsUnique}" />
