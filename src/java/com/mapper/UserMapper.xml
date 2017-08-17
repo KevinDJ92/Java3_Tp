@@ -16,6 +16,7 @@
     </select>
     
      <insert id="insertUser" parameterType="User">
-        INSERT INTO users(username, email, password, role) VALUES (#{username},#{email}, #{password}, #{role});
+        INSERT INTO users(username,first_name,last_name, email, salt_password,hash_password, id_role,sex,date_of_birth,height,id_city,phone_number,url_profile_image,is_online)
+         VALUES (#{username},#{first_name},#{last_name},#{email},#{salt_password},#{hash_password},#{id_role},#{sex},#{date_of_birth},#{height},#{id_city}, #{phone_number}, #{url_profile_image},#{is_online});
     </insert>
 </mapper>
