@@ -13,7 +13,7 @@
         <h:form enctype="multipart/form-data">
             <ace:panel header="Registration Form">
                 <aside class="marge">
-                    <ace:simpleSelectOneMenu value="#{registerBean.choixLangue}" styleClass="position"  valueChangeListener="#{registerBean.changerLangueListener}" >
+                    <ace:simpleSelectOneMenu value="#{registerBean.choixLangue}" styleClass="position" valueChangeListener="#{registerBean.changerLangueListener}" >
                         <f:selectItem itemValue="0" itemLabel="Anglais" />
                         <h:graphicImage value="images/francais.jpg" style="border: 0px"/>
                         <f:selectItem itemValue="1" itemLabel="Francais" />
@@ -34,7 +34,7 @@
                     </ace:textEntry>
                 </aside>
                 <aside class="marge">
-                    <ace:textEntry id="password" label="#{msg.password}" secret="true" labelPosition="left" value="#{registerBean.user.password}"
+                    <ace:textEntry id="password" label="#{msg.password}" secret="true" labelPosition="left" value="#{registerBean.password}"
                                     required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.password']}">
                        <f:validator validatorId = "passwordValid" />
                     </ace:textEntry>
@@ -52,19 +52,21 @@
                         <f:selectItem itemLabel="Women" itemValue="women"/>
                      </ace:simpleSelectOneMenu>
                 </aside> 
-<!--                <aside class="marge">
-                    <ace:simpleSelectOneMenu value="#{registerBean.jour}">
-                        <f:selectItems value="#{registerBean.joursListe}"  />
-                    </ace:simpleSelectOneMenu>
+                <aside class="marge">
+                    <ace:simpleSelectOneMenu value="#{dateMb.jour}">
+                         <f:selectItems value="#{dateMb.joursListe}"  />
+                     </ace:simpleSelectOneMenu>
 
-                    <ace:simpleSelectOneMenu value="#{registerBean.mois}">
-                        <f:selectItems value="#{registerBean.moisListe}"  />
-                    </ace:simpleSelectOneMenu>
+                     <ace:simpleSelectOneMenu value="#{dateMb.mois}" valueChangeListener="#{dateMb.changerMonthListener}">
+                         <f:selectItems value="#{dateMb.moisListe}"  />
+                         <ace:ajax/>
+                     </ace:simpleSelectOneMenu>
 
-                    <ace:simpleSelectOneMenu value="#{registerBean.annee}">
-                        <f:selectItems value="#{registerBean.anneeListe}" />
-                    </ace:simpleSelectOneMenu>
-                </aside> -->
+                     <ace:simpleSelectOneMenu value="#{dateMb.annee}" valueChangeListener="#{dateMb.changerYearListener}">
+                         <f:selectItems value="#{dateMb.anneeListe}" />
+                         <ace:ajax/>
+                     </ace:simpleSelectOneMenu>
+                </aside> 
                 <aside class="marge">
                      <ace:simpleSelectOneMenu id="city" value="#{registerBean.user.id_city}">
                         <f:selectItems value="#{registerBean.choix}"/>

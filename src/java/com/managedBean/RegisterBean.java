@@ -4,6 +4,7 @@ import com.entities.City;
 import com.entities.User;
 import com.manager.CityManager;
 import com.manager.UserManager;
+import com.security.HashFunction;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -12,6 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -21,7 +23,6 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.Part;
 import org.icefaces.ace.component.checkboxbuttons.CheckboxButtons;
-import org.joda.time.Days;
 
 @Named(value = "registerBean")
 @RequestScoped
@@ -37,11 +38,12 @@ public class RegisterBean implements Serializable {
     
     private ArrayList<SelectItem> choix;
     private SelectItem selectItem;
-    private SelectItem selectItemJour;
     
     private Part image;
-    private Days days;
     private CheckboxButtons cbButtons;
+    private String password;
+    private String charactersASCII;
+    private static Random rand;
     
     public RegisterBean() {
         user = new User();
@@ -56,9 +58,14 @@ public class RegisterBean implements Serializable {
     }  
     
     @PostConstruct
-    public void init(){
-        cbButtons = new CheckboxButtons();
+    public void init(){    
+        // ASCII 48- 122
+        for (int i = 48; i <= 122; i++){  
+           charactersASCII += (char) i; 
+        }
         
+        
+        cbButtons = new CheckboxButtons();  
         String[] values = {"3"};  
         cbButtons.setSelectedValues(values);
     }
@@ -71,14 +78,18 @@ public class RegisterBean implements Serializable {
             emailInDB = UserManager.selectUserByEmail(user);
             
             if (emailInDB == null){
+                // to crypt passwords
+                user.setSalt_password(generateString(charactersASCII, 8));  
+                HashFunction hash = new HashFunction();
+                user.setHash_password(hash.getHash(user.getSalt_password()));
+                
                 UserManager.insertUser(user);
                 namePage = loginPage + redirect;
             }
             else {
                FacesMessage msg = new FacesMessage("Email is not unique");
                msg.setSeverity(FacesMessage.SEVERITY_FATAL);
-               FacesContext.getCurrentInstance().addMessage(null, msg);
-            
+               FacesContext.getCurrentInstance().addMessage(null, msg);     
             }
         }
         else {
@@ -89,6 +100,15 @@ public class RegisterBean implements Serializable {
         
         return namePage;
     }
+    
+     public static String generateString(String characters, int length){
+        rand = new Random();
+        char[] text = new char[length];
+        for (int i = 0; i < length; i++){
+            text[i] = characters.charAt(rand.nextInt(characters.length()));
+        }
+        return new String(text);
+     }
     
      public void doUpload(){
         try {
@@ -114,26 +134,7 @@ public class RegisterBean implements Serializable {
             e.printStackTrace();
         }
     }
-
-//     public void actionMethode(){
-//        FacesMessage msg = new FacesMessage("Inscription reussie");
-//        FacesContext.getCurrentInstance().addMessage(null, msg);
-//    }
      
-    public void changeLangue() {
-        Locale lang = null;
-        
-        switch (choixLangue) {
-            case 0:
-                lang = Locale.ENGLISH;
-                break;
-            case 1:
-                lang = Locale.FRANCE;
-                break; 
-        }
-        FacesContext.getCurrentInstance().getViewRoot().setLocale(lang);
-    }
-
     public void changerLangueListener(ValueChangeEvent event){
         Locale lang = null;
         
@@ -190,5 +191,13 @@ public class RegisterBean implements Serializable {
 
     public void setCbButtons(CheckboxButtons cbButtons) {
         this.cbButtons = cbButtons;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

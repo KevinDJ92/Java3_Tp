@@ -11,13 +11,13 @@ public class TestSearchMatchMapper {
         SqlSession session = ConnexionBD.getSession();
          
         User user = session.selectOne("com.mapper.SearchMatchMapper.getUserPreferences", 1);       
-        Preferences preference = user.getPreference();    
+        Preferences preference = user.getPreferences();    
         String sex_preference = null;
          
         HashMap<String, Object> parms = new HashMap<String, Object>();    
             parms.put("id_user", user.getId_user());
             parms.put("sex", user.getSex());
-            parms.put("age", user.getAge());
+            parms.put("date_of_bith", user.getDate_of_birth());
             parms.put("height", user.getHeight());
             
             parms.put("min_age", preference.getMin_age());
@@ -32,7 +32,7 @@ public class TestSearchMatchMapper {
         List<User> listUser = session.selectList("com.mapper.SearchMatchMapper.getPreferredUser", parms);
 
         for (User users : listUser) {  
-            System.out.println("\nUsername : " + users.getUsername() + " id_Image: " + users.getId_image());  
+            System.out.println("\nUsername : " + users.getUsername() + " id_Image: " + users.getUrl_profile_image());  
         }
       
         session.close();

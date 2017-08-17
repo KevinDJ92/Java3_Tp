@@ -2,6 +2,7 @@ package com.managedBean;
 
 import com.entities.User;
 import com.manager.UserManager;
+import com.security.HashFunction;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -20,6 +21,7 @@ public class LoginBean implements Serializable {
     private String loginPage = "login";
     private String indexPage = "index";
     private String redirect = "?redirect=true";
+    private String password = "";
     
     public LoginBean() {
        user = new User();
@@ -29,8 +31,16 @@ public class LoginBean implements Serializable {
         userInDB = UserManager.selectUserByName(user);  
         String namePage = loginPage; 
         
-        if (userInDB != null){
-            if (user.getPassword().equals(userInDB.getPassword())){
+        String passwordWithSalt = "";
+        
+        if (userInDB != null){    
+            passwordWithSalt = password + userInDB.getHash_password();
+            HashFunction hash = new HashFunction();
+            
+            user.setHash_password(hash.getHash(passwordWithSalt));
+            
+            if (user.getHash_password().equals(userInDB.getHash_password())){
+                
                isUser = true;
                namePage = indexPage + redirect;
            }
@@ -64,5 +74,13 @@ public class LoginBean implements Serializable {
 
     public void setIsUser(boolean isUser) {
         this.isUser = isUser;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
