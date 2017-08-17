@@ -25,6 +25,16 @@ public class UserManager {
         return user1;
     }
     
+        public static User selectUserById(User user) {
+        User user1;    
+        SqlSession session = ConnexionBD.getSession();
+  
+        user1 = session.selectOne("com.mapper.UserMapper.getUserById", user.getId_user());
+        session.close();	  
+        
+        return user1;
+    }
+    
     public static void insertUser(User user) {
         boolean userInserted = false; 
         SqlSession session = ConnexionBD.getSession();

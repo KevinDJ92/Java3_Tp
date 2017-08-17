@@ -21,5 +21,6 @@
           <mapper resource="com/mapper/UserMapper.xml" />
           <mapper resource="com/mapper/CityMapper.xml" />
           <mapper resource="com/mapper/SearchMatchMapper.xml" />
+          <mapper resource="com/mapper/UserContactMapper.xml"/>
     </mappers>
 </configuration>
