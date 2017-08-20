@@ -4,116 +4,106 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ace="http://www.icefaces.org/icefaces/components">
-    <h:head>
-        <title>Register Page</title>
-        <f:loadBundle basename="com.bundles.messages" var="msg"/>
-        <h:outputStylesheet library="css" name="styles.css"/>
-    </h:head>
-    <h:body>
-        <h:form enctype="multipart/form-data">
-            <ace:panel header="Registration Form">
-                <aside class="marge">
-                    <ace:simpleSelectOneMenu value="#{registerBean.choixLangue}" styleClass="position" valueChangeListener="#{registerBean.changerLangueListener}" >
-                        <f:selectItem itemValue="0" itemLabel="Anglais" />
-                        <h:graphicImage value="images/francais.jpg" style="border: 0px"/>
-                        <f:selectItem itemValue="1" itemLabel="Francais" />
-                        <h:graphicImage value="images/anglais.jpg" style="border: 0px"/>
-                        <ace:ajax/>
-                    </ace:simpleSelectOneMenu>
-                </aside>
-                <aside class="marge">
-                    <ace:textEntry id="username" label="#{msg.username}" labelPosition="left" value="#{registerBean.user.username}"
-                                   required="true" requiredIndicator="(*)"  requiredMessage="#{msg['required.username']}">
-                       <f:validateLength minimum="6" maximum="12" />
-                    </ace:textEntry> 
-                </aside>
-                <aside class="marge">
-                    <ace:textEntry id="firstname" label="#{msg.firstname}" labelPosition="left" value="#{registerBean.user.first_name}"
-                                   required="true" requiredIndicator="(*)"  requiredMessage="#{msg['required.username']}">
-                       <f:validateLength minimum="2" />
-                    </ace:textEntry> 
-                </aside>   
-                <aside class="marge">
-                    <ace:textEntry id="lastname" label="#{msg.lastname}" labelPosition="left" value="#{registerBean.user.last_name}"
-                                   required="true" requiredIndicator="(*)"  requiredMessage="#{msg['required.username']}">
-                       <f:validateLength minimum="2" />
-                    </ace:textEntry> 
-                </aside>
-                
-  
-                 <aside class="marge">
-                    <ace:textEntry id="email" label="#{msg.email}" labelPosition="left" value="#{registerBean.user.email}" 
-                                    required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.email']}" >
-                       <f:validator validatorId = "emailValid" />
-                    </ace:textEntry>
-                </aside>
-                <aside class="marge">
-                    <ace:textEntry id="password" label="#{msg.password}" secret="true" labelPosition="left" value="#{registerBean.password}"
-                                    required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.password']}">
-                       <f:validator validatorId = "passwordValid" />
-                    </ace:textEntry>
-                </aside> 
-                  <aside class="marge">
-                    <ace:textEntry id="phone_number" label="#{msg.phone_number}" secret="true" labelPosition="left" value="#{registerBean.user.phone_number}"
-                                    required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.phone_number']}">
-                       <f:validator validatorId = "phoneNumberValid" />
-                    </ace:textEntry>
-                </aside>    
-                 <aside class="marge">
-                     <ace:simpleSelectOneMenu id="sex" value="#{registerBean.user.sex}" 
-                                              required="true">
-                        <f:selectItem itemLabel="Men" itemValue="men"/>
-                        <f:selectItem itemLabel="Women" itemValue="women"/>
-                     </ace:simpleSelectOneMenu>
-                </aside> 
-                <aside class="marge">
-                    <ace:simpleSelectOneMenu value="#{dateMb.jour}">
-                         <f:selectItems value="#{dateMb.joursListe}"  />
-                     </ace:simpleSelectOneMenu>
+        <h:head>
+            <title>Register Page</title>
+            <f:loadBundle basename="com.bundles.messages" var="msg"/>
+            <h:outputStylesheet library="css" name="styles.css"/>
+        </h:head>
+        <h:body>
+            <h:form enctype="multipart/form-data">
+                <ace:panel header="Registration Form">
+                    <aside class="marge">
+                        <ace:simpleSelectOneMenu value="#{registerBean.choixLangue}" styleClass="position" valueChangeListener="#{registerBean.changerLangueListener}" >
+                            <f:selectItem itemValue="0" itemLabel="Anglais" />
+                            <h:graphicImage value="images/francais.jpg" style="border: 0px"/>
+                            <f:selectItem itemValue="1" itemLabel="Francais" />
+                            <h:graphicImage value="images/anglais.jpg" style="border: 0px"/>
+                            <ace:ajax/>
+                        </ace:simpleSelectOneMenu>
+                    </aside>
+                    <aside class="marge">
+                        <ace:textEntry id="username" label="#{msg.username}" labelPosition="left" value="#{registerBean.user.username}"
+                                       required="true" requiredIndicator="(*)"  requiredMessage="#{msg['required.username']}">
+                           <f:validateLength minimum="6" maximum="12" />
+                        </ace:textEntry> 
+                    </aside>
+                    <aside class="marge">
+                        <ace:textEntry id="firstname" label="#{msg.firstname}" labelPosition="left" value="#{registerBean.user.first_name}"
+                                       required="true" requiredIndicator="(*)">
+<!--                           <f:validateLength minimum="2" />-->
+                        </ace:textEntry> 
+                    </aside>   
+                    <aside class="marge">
+                        <ace:textEntry id="lastname" label="#{msg.lastname}" labelPosition="left" value="#{registerBean.user.last_name}"
+                                       required="true" requiredIndicator="(*)" >
+                           <!--<f:validateLength minimum="2" />-->
+                        </ace:textEntry> 
+                    </aside>
+                     <aside class="marge">
+                        <ace:textEntry id="email" label="#{msg.email}" labelPosition="left" value="#{registerBean.user.email}" 
+                                        required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.email']}" >
+                           <f:validator validatorId = "emailValid" />
+                        </ace:textEntry>
+                    </aside>
+                    <aside class="marge">
+                        <ace:textEntry id="password" label="#{msg.password}" secret="true" labelPosition="left" value="#{registerBean.password}"
+                                        required="true" requiredIndicator="(*)" requiredMessage="#{msg['required.password']}">
+                           <f:validator validatorId = "passwordValid" />
+                        </ace:textEntry>
+                    </aside> 
+                      <aside class="marge">
+                        <ace:textEntry id="phone_number" label="#{msg.phone_number}" labelPosition="left" value="#{registerBean.user.phone_number}">
+                        </ace:textEntry>
+                    </aside>    
+                     <aside class="marge">
+                         <ace:simpleSelectOneMenu id="sex" value="#{registerBean.user.sex}" 
+                                                  required="true">
+                            <f:selectItem itemLabel="Men" itemValue="men"/>
+                            <f:selectItem itemLabel="Women" itemValue="women"/>
+                         </ace:simpleSelectOneMenu>
+                    </aside> 
+                    <aside class="marge">
+                        <ace:simpleSelectOneMenu value="#{registerBean.jour}">
+                             <f:selectItems value="#{registerBean.joursListe}"  />
+                         </ace:simpleSelectOneMenu>
 
-                     <ace:simpleSelectOneMenu value="#{dateMb.mois}" valueChangeListener="#{dateMb.changerMonthListener}">
-                         <f:selectItems value="#{dateMb.moisListe}"  />
-                         <ace:ajax/>
-                     </ace:simpleSelectOneMenu>
+                         <ace:simpleSelectOneMenu value="#{registerBean.mois}" valueChangeListener="#{registerBean.changerMonthListener}">
+                             <f:selectItems value="#{registerBean.moisListe}"  />
+                             <ace:ajax execute="@this"/>
+                         </ace:simpleSelectOneMenu>
 
-                     <ace:simpleSelectOneMenu value="#{dateMb.annee}" valueChangeListener="#{dateMb.changerYearListener}">
-                         <f:selectItems value="#{dateMb.anneeListe}" />
-                         <ace:ajax/>
-                     </ace:simpleSelectOneMenu>
-                </aside> 
-               
-                <aside class="marge">
-                     <ace:simpleSelectOneMenu id="height" value="#{registerBean.user.height}" >
-                         <f:selectItems value="#{registerBean.heightList}"/>
-                     </ace:simpleSelectOneMenu>
-                </aside>  
-                
-                <aside class="marge">
-                     <ace:simpleSelectOneMenu id="city" value="#{registerBean.user.id_city}">
-                        <f:selectItems value="#{registerBean.choix}"/>
-                     </ace:simpleSelectOneMenu>
-                </aside>    
-                
-                <aside class="marge">
-                     <h:inputFile value="#{registerBean.image}">
-                        <f:passThroughAttribute name="accept" value="image/png"/>
-                        <f:ajax event="change" listener="#{registerBean.doUpload()}" />
-                    </h:inputFile>  
-                </aside>   
-                
-                <aside class="marge">
-                     <ace:checkboxButtons id="agreements" binding="#{registerBean.cbButtons}" labelPosition ="right">
-                         <f:selectItem itemValue="1" itemLabel="1 choix" />
-                         <f:selectItem itemValue="2" itemLabel="2 choix" />
-                         <f:selectItem itemValue="3" itemLabel="3 choix" />    
-                     </ace:checkboxButtons>
-                </aside>  
-                
-                <aside class="button">
-                    <ace:pushButton value="Register" action="#{registerBean.userIsUnique}" />
-                </aside>
-            </ace:panel>
-        </h:form>
-    </h:body>
+                         <ace:simpleSelectOneMenu value="#{registerBean.annee}" valueChangeListener="#{registerBean.changerYearListener}">
+                             <f:selectItems value="#{registerBean.anneeListe}" />
+                             <ace:ajax execute="@this" />
+                         </ace:simpleSelectOneMenu>
+                    </aside> 
+                    <aside class="marge">
+                         <ace:simpleSelectOneMenu id="height" value="#{registerBean.heightWithCm}" >
+                             <f:selectItems value="#{registerBean.heightList}"/>
+                         </ace:simpleSelectOneMenu>
+                    </aside>  
+                    <aside class="marge">
+                         <ace:simpleSelectOneMenu id="city" value="#{registerBean.user.id_city}">
+                            <f:selectItems value="#{registerBean.choix}"/>
+                         </ace:simpleSelectOneMenu>
+                    </aside>    
+<!--                     <aside class="marge">
+                        <ace:fileEntry id="pm" maxFileCount="1" fileEntryListener="#{userMB.uploadFileMembre}" 
+                                   relativePath="web/photos" useSessionSubdir="false" />
+                        <h:commandButton  value="Enregistre votre photo >>" />
+                    </aside>                -->
+                    <aside class="marge">
+                         <ace:checkboxButtons id="agreements" binding="#{registerBean.cbButtons}" labelPosition ="right">
+                             <f:selectItem itemValue="1" itemLabel="1 choix" />
+                             <f:selectItem itemValue="2" itemLabel="2 choix" />
+                             <f:selectItem itemValue="3" itemLabel="3 choix" />    
+                         </ace:checkboxButtons>
+                    </aside>  
+                    <aside class="button">
+                        <h:commandButton value="Register" action="#{registerBean.userIsUnique}" />
+                    </aside>
+                </ace:panel>
+            </h:form>
+        </h:body>
 </html>
 

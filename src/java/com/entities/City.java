@@ -6,7 +6,7 @@ import java.util.Collection;
 public class City implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Integer idCity;
+    private Integer id_city;
     private String name;
     private Collection<User> userCollection;
 
@@ -14,20 +14,20 @@ public class City implements Serializable {
     }
 
     public City(Integer idCity) {
-        this.idCity = idCity;
+        this.id_city = idCity;
     }
 
     public City(Integer idCity, String name) {
-        this.idCity = idCity;
+        this.id_city = idCity;
         this.name = name;
     }
 
-    public Integer getIdCity() {
-        return idCity;
+    public Integer getId_city() {
+        return id_city;
     }
 
-    public void setIdCity(Integer idCity) {
-        this.idCity = idCity;
+    public void setId_city(Integer id_city) {
+        this.id_city = id_city;
     }
 
     public String getName() {

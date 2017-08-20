@@ -59,7 +59,6 @@ public class DateMb implements Serializable{
         int diff = Years.yearsBetween(birthday, dateAujourdhui).getYears();
         
         msgRetour = "Birthday: " + birthday +  "\nAge: " + diff;   
-
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msgRetour));
     }
     

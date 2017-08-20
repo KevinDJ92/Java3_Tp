@@ -15,7 +15,6 @@ public class ValidatePhoneNumber implements Validator {
         FacesMessage msg;
         String phoneNumber = (String)value;
         
-        String pattern = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$";
    
 //        if(!Pattern.matches(pattern, phoneNumber)){
 //            msg = new FacesMessage("Phone number invalid");

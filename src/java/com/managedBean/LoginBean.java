@@ -5,9 +5,11 @@ import com.manager.UserManager;
 import com.security.HashFunction;
 import java.io.IOException;
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+
 import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+
 import javax.faces.context.FacesContext;
 
 @Named(value = "loginBean")
@@ -34,7 +36,7 @@ public class LoginBean implements Serializable {
         String passwordWithSalt = "";
         
         if (userInDB != null){    
-            passwordWithSalt = password + userInDB.getHash_password();
+            passwordWithSalt = password + userInDB.getSalt_password();
             HashFunction hash = new HashFunction();
             
             user.setHash_password(hash.getHash(passwordWithSalt));
