@@ -87,10 +87,9 @@
                             <f:selectItems value="#{registerBean.choix}"/>
                          </ace:simpleSelectOneMenu>
                     </aside>    
-<!--                     <aside class="marge">
-                        <ace:fileEntry id="pm" maxFileCount="1" fileEntryListener="#{userMB.uploadFileMembre}" 
+<!--                <aside class="marge">
+                        <ace:fileEntry id="pm" maxFileCount="1" fileEntryListener="#{registerBean.uploadFileMembre}" 
                                    relativePath="web/photos" useSessionSubdir="false" />
-                        <h:commandButton  value="Enregistre votre photo >>" />
                     </aside>                -->
                     <aside class="marge">
                          <ace:checkboxButtons id="agreements" binding="#{registerBean.cbButtons}" labelPosition ="right">

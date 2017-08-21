@@ -7,10 +7,10 @@ import org.apache.ibatis.session.SqlSession;
 
 public class CityManager {
         public static List<City> selectAllCities() {
-        City city;    
+        List<City> listCities = null;    
         SqlSession session = ConnexionBD.getSession();
   
-        List<City> listCities = session.selectList("com.mapper.CityMapper.getAllCities");
+        listCities = session.selectList("com.mapper.CityMapper.getAllCities");
         session.close();	  
         
         return listCities;

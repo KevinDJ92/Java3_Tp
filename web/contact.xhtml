@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ace="http://www.icefaces.org/icefaces/components">
+    <h:head>
+        <title>Contact</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <ace:panel header="Liste de Contact">
+                
+                <ace:dataTable value="#{afficherContactMB.mesContact}" var="contact">  
+                    <ace:column  headerText="id_contact" >
+                        <h:outputText  value="#{contact.id_user}"/>
+                    </ace:column>
+                   <ace:column  headerText="Profil" >
+                        <h:commandButton value="Liste vehicules" action="#{afficherMB.action(test)}"/>
+                    </ace:column>
+                </ace:dataTable>
+            </ace:panel>    
+        </h:form>
+    </h:body>
+</html>

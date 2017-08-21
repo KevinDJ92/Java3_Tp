@@ -1,12 +1,84 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ace="http://www.icefaces.org/icefaces/components">
     <h:head>
-        <title>Indextest2</title>
+        <title>Main page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-        <p>myTest</p>
+        <h:form>
+        <ace:panel header="Recherche avancé " >
+                  <h:commandButton value="Rechercher" action="rechercheUser?faces-redirect=true"/>
+            </ace:panel>
+            <ace:panel header=" Membre privilegier ">
+                <ace:dataTable value="" var="user" rendered="false">                
+                    <ace:column>
+                        <h:outputText  value="#{user.idUser}"/>
+                    </ace:column>
+                    <ace:column  headerText="#{msg.firstname} #{msg.lastname}" >
+                        <h:outputText  value="#{user.first_name} #{user.last_name}"/>
+                    </ace:column>
+                    <ace:column  headerText="#{msg.height}" >
+                        <h:outputText  value="#{user.height}"/>
+                    </ace:column>
+                    <ace:column  headerText="#{msg.age}" >
+                        <h:outputText  value="fonction get age"/>
+                    </ace:column> 
+            </ace:dataTable>
+            </ace:panel>
+            <ace:dataTable value="#{afficherContactMb.mesContacts}" var="contact" >                
+                    <ace:column  headerText="idUser" >
+                        <h:outputText  value="#{contact.idUser}"/>
+                    </ace:column>
+                    <ace:column  headerText="idContact" >
+                        <h:outputText  value="#{contact.idContact}"/>
+                    </ace:column>
+                    <ace:column  headerText="email" >
+                        <h:outputText  value="#{contact.email}"/>
+                    </ace:column>
+                    <ace:column  headerText="nom" >
+                        <h:outputText  value="#{contact.nom}"/>
+                    </ace:column>
+                    <ace:column  headerText="taille" >
+                        <h:outputText  value="#{contact.taille}"/>
+                    </ace:column>
+                    <ace:column  headerText="age" >
+                        <h:outputText  value="#{contact.age}"/>
+                    </ace:column> 
+            </ace:dataTable>
+<!--        <ace:panel header="Liste des Marques"  rendered="#{afficherMB.afficherMarque}">
+                <ace:dataTable value="#{afficherMB.mesMarques}" var="test">  
+                    <ace:column  headerText="Marque" >
+                        <h:outputText  value="#{test.marque}"/>
+                    </ace:column>
+                   <ace:column  headerText="Afficher Vehicules" >
+                        <h:commandButton value="Liste vehicules" action="#{afficherMB.action(test)}"/>
+                    </ace:column>
+                </ace:dataTable>
+            </ace:panel>
+            <ace:panel header="Liste des Vehicules de : #{afficherMB.marque}" rendered="#{afficherMB.afficherVehicules}" >
+                <ace:dataTable value="#{afficherMB.mesVehicules}" var="vehicule" >   
+                    <ace:column  headerText="No" >
+                        <h:outputText  value="#{vehicule.no}"/>
+                    </ace:column>
+                    <ace:column  headerText="No Serie" >
+                        <h:outputText  value="#{vehicule.noSerie}"/>
+                    </ace:column>
+                    <ace:column  headerText="Modele" >
+                        <h:outputText  value="#{vehicule.modele}"/>
+                    </ace:column>
+                    <ace:column  headerText="Annee" >
+                        <h:outputText  value="#{vehicule.annee}"/>
+                    </ace:column>
+                    <ace:column  headerText="Prix" >
+                        <h:outputText  value="#{vehicule.prix}"/>
+                    </ace:column>
+                </ace:dataTable>
+                <h:commandButton value="Retour aux Marque" action="#{afficherMB.retour()}" />
+            </ace:panel>      -->
+        </h:form>
     </h:body>
 </html>
 
