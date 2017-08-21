@@ -48,36 +48,6 @@
                         <h:outputText  value="#{contact.age}"/>
                     </ace:column> 
             </ace:dataTable>
-<!--        <ace:panel header="Liste des Marques"  rendered="#{afficherMB.afficherMarque}">
-                <ace:dataTable value="#{afficherMB.mesMarques}" var="test">  
-                    <ace:column  headerText="Marque" >
-                        <h:outputText  value="#{test.marque}"/>
-                    </ace:column>
-                   <ace:column  headerText="Afficher Vehicules" >
-                        <h:commandButton value="Liste vehicules" action="#{afficherMB.action(test)}"/>
-                    </ace:column>
-                </ace:dataTable>
-            </ace:panel>
-            <ace:panel header="Liste des Vehicules de : #{afficherMB.marque}" rendered="#{afficherMB.afficherVehicules}" >
-                <ace:dataTable value="#{afficherMB.mesVehicules}" var="vehicule" >   
-                    <ace:column  headerText="No" >
-                        <h:outputText  value="#{vehicule.no}"/>
-                    </ace:column>
-                    <ace:column  headerText="No Serie" >
-                        <h:outputText  value="#{vehicule.noSerie}"/>
-                    </ace:column>
-                    <ace:column  headerText="Modele" >
-                        <h:outputText  value="#{vehicule.modele}"/>
-                    </ace:column>
-                    <ace:column  headerText="Annee" >
-                        <h:outputText  value="#{vehicule.annee}"/>
-                    </ace:column>
-                    <ace:column  headerText="Prix" >
-                        <h:outputText  value="#{vehicule.prix}"/>
-                    </ace:column>
-                </ace:dataTable>
-                <h:commandButton value="Retour aux Marque" action="#{afficherMB.retour()}" />
-            </ace:panel>      -->
         </h:form>
     </h:body>
 </html>
