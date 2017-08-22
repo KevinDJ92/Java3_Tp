@@ -18,15 +18,18 @@
                     <ace:column>
                         <h:outputText  value="#{user.idUser}"/>
                     </ace:column>
+                    <ace:column  headerText="idUser" >
+                        <h:outputText  value="#{user.username}"/>
+                    </ace:column>
                            <ace:column  headerText="#{msg.firstname} #{msg.lastname}" >
                                <h:outputText  value="#{user.first_name} #{user.last_name}"/>
                     </ace:column>
                     <ace:column  headerText="#{msg.height}" >
                         <h:outputText  value="#{user.height}"/>
                     </ace:column>
-                    <ace:column  headerText="#{msg.age}" >
+<!--                    <ace:column  headerText="#{msg.age}" >
                         <h:outputText  value="fonction get age"/>
-                    </ace:column> 
+                    </ace:column> -->
             </ace:dataTable>
             </ace:panel>     
 
@@ -34,15 +37,18 @@
                     <ace:column  headerText="idUser" >
                         <h:outputText  value="#{user.id_user}"/>
                     </ace:column>
+                    <ace:column  headerText="idUser" >
+                        <h:outputText  value="#{user.username}"/>
+                    </ace:column>
                     <ace:column  headerText="#{msg.firstname} #{msg.lastname}" >
                         <h:outputText  value="#{user.first_name} #{user.last_name}"/>
                     </ace:column>
                     <ace:column  headerText="#{msg.height}">
                         <h:outputText  value=" #{user.height} " />
                     </ace:column>
-                    <ace:column  headerText="#{msg.age}" >
+<!--                    <ace:column  headerText="#{msg.age}" >
                         <h:outputText  value="#{user.age}"/>
-                    </ace:column> 
+                    </ace:column> -->
             </ace:dataTable>
             
         </h:form>

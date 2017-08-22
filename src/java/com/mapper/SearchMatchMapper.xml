@@ -4,9 +4,9 @@
       <resultMap type="User" id="UserPreferencesResultMap">
         <id property="id_user" column="id_user"/>
         <result property="sex" column="sex"/>
-        <result property="age" column="age"/>
+        <result property="date_of_birth" column="date_of_birth"/>
         <result property="height" column="height"/>
-        <association property="preference" resultMap="PreferencesMapper"/>
+        <association property="preferences" resultMap="PreferencesMapper"/>
     </resultMap>
     <resultMap type="Preferences" id="PreferencesMapper">
         <result property="sex_preference" column="sex_preference"/>
@@ -22,11 +22,11 @@
     </select> 
     
     <select id="getPreferredUser" parameterType="hashmap" resultType="User">
-        SELECT username, id_image
+        SELECT *
         FROM users 
         <where> 
-            users.id_user != ${id_user} AND
-            (age BETWEEN ${min_age} AND ${max_age}) AND
+            users.id_user != ${id_user} AND    
+            (round(DATEDIFF(now(), date_of_birth)/365) BETWEEN ${min_age} AND ${max_age}) AND
             (height BETWEEN ${min_height} AND ${max_height}) AND
             <if test="_parameter.containsKey('sex_preference')">
                 sex = '${sex_preference}' AND
