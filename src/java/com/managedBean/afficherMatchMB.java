@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.managedBean;
 
 import com.entities.Preferences;
@@ -12,20 +7,23 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.annotation.PostConstruct;
+
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.inject.Named;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author damon
- */
-@Named(value = "afficherMatchMB")
-@ViewScoped
+@ManagedBean
+@SessionScoped
 public class afficherMatchMB implements Serializable{
-        private ArrayList<User> users;
-        private HashMap<String, Object> parms;
+    private ArrayList<User> users;
+//    private HashMap<String, Object> parms;
 
+    @ManagedProperty( value="#{loginBean}" )
+    private LoginBean loginBean;     
+    
+    public afficherMatchMB() {
+    }
+    
     public ArrayList<User> getUsers() {
         return users;
     }
@@ -34,40 +32,41 @@ public class afficherMatchMB implements Serializable{
         this.users = users;
     }
 
-    public HashMap<String, Object> getParms() {
-        return parms;
+//    public HashMap<String, Object> getParms() {
+//        return parms;
+//    }
+//
+//    public void setParms(HashMap<String, Object> parms) {
+//        this.parms = parms;
+//    }
+
+    public LoginBean getLoginBean() {
+        return loginBean;
     }
 
-    public void setParms(HashMap<String, Object> parms) {
-        this.parms = parms;
-    }
-
-    public LoginBean getLoginbean() {
-        return loginbean;
-    }
-
-    public void setLoginbean(LoginBean loginbean) {
-        this.loginbean = loginbean;
-    }
-        
-        
-@ManagedProperty(value="#{loginBean}")
-    private LoginBean loginbean;
-
-    public afficherMatchMB() {
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
     }
     
-       @PostConstruct
-   public void init() {
-            
-            parms = getPreferenceFromUser(loginbean.getUser());
-            users = (ArrayList<User>) UserManager.getPreferredUser(parms);
-            
+    @PostConstruct
+    public void init() {  
+         System.out.println("Show the user first name:  " + loginBean.getUser().getFirst_name());
+         User user = new User();
+//        user = loginBean.getUser();
+         
+//         getPreferenceFromUser(user);
+//         users = (ArrayList<User>) UserManager.getPreferredUser(parms);  
     }
    
    public HashMap<String, Object> getPreferenceFromUser(User userid){
+        System.out.println("Entered the has map"); 
+       
         User user = UserManager.getUserPreferences(userid);
-        Preferences preference = user.getPreferences();    
+        System.out.println("User: "  + user); 
+        
+        Preferences preference = user.getPreferences();  
+        System.out.println("Preference: "  + preference); 
+        
         String sex_preference = null;
          
         HashMap<String, Object> parms = new HashMap<String, Object>();    
@@ -84,4 +83,5 @@ public class afficherMatchMB implements Serializable{
                 parms.put("sex_preference", preference.getSex_preference());
         return parms;
    }
+   
 }

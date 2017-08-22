@@ -57,12 +57,12 @@ public class UserManager {
         return lUser;
     }
         public static User getUserPreferences(User user){
-        User user1 = null;   
-        SqlSession session = ConnexionBD.getSession();
-  
-        user = session.selectOne("com.mapper.SearchMatchMapper.getUserPreferences", user.getId_user());
-        session.close();
-        return user1;
+            User user1 = null;   
+            SqlSession session = ConnexionBD.getSession();
+
+            user1 = session.selectOne("com.mapper.SearchMatchMapper.getUserPreferences", user.getId_user());
+            session.close();
+            return user1;
         }
         
         public static List<User> getPreferredUser(HashMap param){
