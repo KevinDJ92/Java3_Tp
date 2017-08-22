@@ -25,13 +25,10 @@ public class UserMB implements Serializable{
     //le repertoire ou on met toutes les photos
     private String pathPhoto = "photos\\";
    
-        private ArrayList<User> users;
-    private HashMap<String, Object> parms;
+   
     
    @PostConstruct
    public void init() {
-              users = (ArrayList<User>) UserManager.selectAllUser();
-       parms = new HashMap<String, Object>();
     }
     public UserMB() {
         
