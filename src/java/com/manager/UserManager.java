@@ -56,18 +56,26 @@ public class UserManager {
         session.close();
         return lUser;
     }
-        public static User getUserPreferences(User user){
+        public static User getUserPreferences(Integer id_user){
             User user1 = null;   
             SqlSession session = ConnexionBD.getSession();
-
-            user1 = session.selectOne("com.mapper.SearchMatchMapper.getUserPreferences", user.getId_user());
+            System.out.println("Entered Get User preferences");    
+            
+            user1 = session.selectOne("com.mapper.SearchMatchMapper.getUserPreferences", id_user);
             session.close();
             return user1;
         }
         
         public static List<User> getPreferredUser(HashMap param){
             SqlSession session = ConnexionBD.getSession();
+            System.out.println("I AM IN getPreferredUser");
+            
             List<User> listUser = session.selectList("com.mapper.SearchMatchMapper.getPreferredUser", param);
+            for (User user : listUser) {     
+                System.out.println("\nid : " + user.getId_user() + "firstName : " + 
+                        user.getFirst_name() + "lastName: " + user.getLast_name());  
+            }
+            
             session.close();
             return listUser;
         }

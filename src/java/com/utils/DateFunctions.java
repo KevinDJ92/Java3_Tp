@@ -2,6 +2,8 @@ package com.utils;
 
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
+import org.joda.time.Period;
+import org.joda.time.PeriodType;
 import org.joda.time.Years;
 
 public class DateFunctions {
@@ -36,10 +38,12 @@ public class DateFunctions {
     return lastDay;
     }
     
-    public static final Years calculateAgeWithBitchDay(LocalDate birthday){
-        LocalDate now = new LocalDate();
-        Years age = Years.yearsBetween(birthday, now);
-       
+     public static final int calculateAgeWithBirthDayPeriod(LocalDate birthday){      
+        LocalDate now = new LocalDate();                    //Today's date
+        Period period = new Period(birthday, now, PeriodType.yearMonthDay());
+        int age = period.getYears();
+        
         return age; 
     }
+  
 }

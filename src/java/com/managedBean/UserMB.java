@@ -1,11 +1,7 @@
 package com.managedBean;
 
-import com.entities.User;
-import com.manager.UserManager;
 import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -24,8 +20,6 @@ public class UserMB implements Serializable{
     private String cheminApp = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/");
     //le repertoire ou on met toutes les photos
     private String pathPhoto = "photos\\";
-   
-   
     
    @PostConstruct
    public void init() {
