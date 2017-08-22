@@ -33,6 +33,9 @@ public class User {
         this.age = age;
     }
     
+    public User() {
+       preferences = new Preferences();
+    }
     
     public Integer getId_user() {
         return id_user;

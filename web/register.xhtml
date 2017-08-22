@@ -51,7 +51,7 @@
                            <f:validator validatorId = "passwordValid" />
                         </ace:textEntry>
                     </aside> 
-                      <aside class="marge">
+                    <aside class="marge">
                         <ace:textEntry id="phone_number" label="#{msg.phone_number}" labelPosition="left" value="#{registerBean.user.phone_number}">
                         </ace:textEntry>
                     </aside>    
@@ -86,11 +86,7 @@
                          <ace:simpleSelectOneMenu id="city" value="#{registerBean.user.id_city}">
                             <f:selectItems value="#{registerBean.choix}"/>
                          </ace:simpleSelectOneMenu>
-                    </aside>    
-<!--                <aside class="marge">
-                        <ace:fileEntry id="pm" maxFileCount="1" fileEntryListener="#{registerBean.uploadFileMembre}" 
-                                   relativePath="web/photos" useSessionSubdir="false" />
-                    </aside>                -->
+                    </aside>              
                     <aside class="marge">
                          <ace:checkboxButtons id="agreements" binding="#{registerBean.cbButtons}" labelPosition ="right">
                              <f:selectItem itemValue="1" itemLabel="1 choix" />
@@ -103,6 +99,10 @@
                     </aside>
                 </ace:panel>
                 <ace:panel header="Preferences Form" rendered="#{registerBean.afficherForm2}">             
+<!--                <aside class="marge">
+                        <ace:fileEntry id="pm" maxFileCount="1" fileEntryListener="#{registerBean.uploadFileMembre}" 
+                                   relativePath="web/photos" useSessionSubdir="false" />
+                    </aside>                     -->
                     <aside class="marge">
                         <ace:simpleSelectOneMenu id="sex_preference" label="#{msg.sex_preference}" value="#{registerBean.user.preferences.sex_preference}"  required="true">
                             <f:selectItem itemLabel="Men" itemValue="men"/>
@@ -111,24 +111,24 @@
                          </ace:simpleSelectOneMenu>
                     </aside>
                     <aside class="marge">
-                        <ace:textEntry id="min_age" label="#{msg.min_age}" labelPosition="left" value="#{registerBean.user.preferences.min_age}">
+                        <ace:textEntry id="min_age" label="#{msg.min_age}" labelPosition="left" value="#{registerBean.min_age}">
                          <f:validateLength minimum="2" maximum="3"/>
-                         <f:validator validatorId = "ageValid" />
+<!--                         <f:validator validatorId = "ageValid" />-->
                         </ace:textEntry> 
                     </aside>   
                     <aside class="marge">
-                        <ace:textEntry id="max_age" label="#{msg.max_age}" labelPosition="left" value="#{registerBean.user.preferences.max_age}">
+                    <ace:textEntry id="max_age" label="#{msg.max_age}" labelPosition="left" value="#{registerBean.max_age}">
                         <f:validateLength minimum="2" maximum="3"/>
-                        <f:validator validatorId = "ageValid" />
-                        </ace:textEntry> 
+<!--                        <f:validator validatorId = "ageValid" />-->
+                    </ace:textEntry> 
                     </aside>
                     <aside class="marge">
-                         <ace:textEntry id="min_height" label="#{msg.min_height}" labelPosition="left" value="#{registerBean.user.preferences.min_height}">
+                         <ace:textEntry id="min_height" label="#{msg.min_height}" labelPosition="left" value="#{registerBean.min_height}">
                             <f:validateLength minimum="3" maximum="3"/>
                         </ace:textEntry>
                     </aside>
                     <aside class="marge">
-                        <ace:textEntry id="max_height" label="#{msg.max_heiht}" labelPosition="left" value="#{registerBean.user.preferences.max_height}" >
+                        <ace:textEntry id="max_height" label="#{msg.max_height}" labelPosition="left" value="#{registerBean.max_height}" >
                             <f:validateLength minimum="3" maximum="3"/>
                         </ace:textEntry>
                     </aside>  
