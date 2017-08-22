@@ -71,4 +71,11 @@ public class UserManager {
             session.close();
             return listUser;
         }
+        
+        public static List<User> getDynamicUser(HashMap param){
+            SqlSession session = ConnexionBD.getSession();
+            List<User> listUser = session.selectList("com.mapper.SearchMapper.getDynamicUser", param);
+            session.close();
+            return listUser;
+        }
 }

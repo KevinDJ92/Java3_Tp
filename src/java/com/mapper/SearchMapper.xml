@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Déclaration du namespace du fichier .xml 
+-->
+<mapper namespace="com.mapper.SearchMapper" >
+    <select id="getDynamicUser" parameterType="hashmap" resultType="User">
+        SELECT * 
+        FROM users 
+        <where> 
+            users.id_user != ${id_user}
+            <if test="email != null">
+                AND email LIKE '%'${email} '%'
+            </if>
+            <if test="firstname != null">
+                AND firstname LIKE '%' ${firstname} '%'
+            </if>
+            <if test="lastname != null">
+                AND lastname LIKE '%' ${lastname} '%'
+            </if>
+            <if test="min_age != null || max_age != null">
+               AND (round(DATEDIFF(now(), date_of_birth)/365) 
+            </if>
+            <if test ="min_age != null && max_age != null">
+                BETWEEN ${min_age} AND ${max_age})
+            </if>
+            <if test="min_age != null && max_age == null">
+                <![CDATA[ >= ]]>  ${min_age})
+            </if>
+            <if test="min_age == null && max_age != null">
+                <![CDATA[ <= ]]>  ${max_age})
+            </if>
+            <if test="min_height != null && max_height != null">
+                 AND (height BETWEEN ${min_height} AND ${max_height})
+            </if>
+            <if test="min_height != null && max_height == null">
+                 AND (height<![CDATA[ >= ]]> ${min_height})
+            </if>
+            <if test="min_height == null && max_height != null">
+                 AND (height<![CDATA[ <= ]]> ${max_height})
+            </if>
+            <if test="sex != null)">
+               AND sex Like '%' ${sex} '%'
+            </if>        
+        </where>
+    </select> 
+    
+</mapper>

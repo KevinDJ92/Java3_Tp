@@ -11,31 +11,36 @@
     <h:body>
         <h:form>
             <ace:panel header="Entrez vos criteres de recherche " >
-                <ace:textEntry label="nom" labelPosition="left" value="#{afficherContactMb.contact.nom}"/><br/> <br/>
-                <ace:textEntry label="email" labelPosition="left" value="#{afficherContactMb.contact.email}"/><br/> <br/>
-                <ace:textEntry label="age" labelPosition="left" value="#{afficherContactMb.contact.age}"/><br/> <br/>
-                <ace:textEntry label="taille" labelPosition="left" value="#{afficherContactMb.contact.taille}"/><br/> <br/>
-                <h:commandButton value="Search" action="#{afficherContactMb.searchContact()}" /><br/> <br/>
+                <ace:textEntry label="#{msg.firstname}" labelPosition="left" value="#{afficherRechercheMB.user.first_name}"/><br/> <br/>
+                <ace:textEntry label="#{msg.lastname}" labelPosition="left" value="#{afficherRechercheMB.user.last_name}"/><br/> <br/>
+                <ace:textEntry label="#{msg.email}" labelPosition="left" value="#{afficherRechercheMB.user.email}"/><br/> <br/>
+                <ace:textEntry label="sex" labelPosition="left" value="#{afficherRechercheMB.user.sex}"/><br/> <br/>
+                <ace:textEntry label="min age" labelPosition="left" disabled="true" value="#{afficherRechercheMB.pref.min_age}"/><br/> <br/>
+                <ace:textEntry label="max age" labelPosition="left" disabled="true" value="#{afficherRechercheMB.pref.max_age}"/><br/> <br/>
+                <ace:textEntry label="min height" labelPosition="left" value="#{afficherRechercheMB.pref.min_height}"/><br/> <br/>
+                <ace:textEntry label="max height" labelPosition="left" value="#{afficherRechercheMB.pref.max_height}"/><br/> <br/>
+                <h:commandButton value="Search" action="#{afficherRechercheMB.searchContact()}" /><br/> <br/>
             </ace:panel>
-            <ace:dataTable value="#{afficherContactMb.mesContacts}" var="contact" >                
+            <ace:dataTable value="#{afficherRechercheMB.lUser}" var="user" >                
                     <ace:column  headerText="idUser" >
-                        <h:outputText  value="#{contact.idUser}"/>
+                        <h:outputText  value="#{user.id_user}"/>
                     </ace:column>
-                    <ace:column  headerText="idContact" >
-                        <h:outputText  value="#{contact.idContact}"/>
+                    <ace:column  headerText="firstname" >
+                        <h:outputText  value="#{user.first_name}"/>
+                    </ace:column>
+                    <ace:column  headerText="lastname" >
+                        <h:outputText  value="#{user.last_name}"/>
                     </ace:column>
                     <ace:column  headerText="email" >
-                        <h:outputText  value="#{contact.email}"/>
+                        <h:outputText  value="#{user.email}"/>
                     </ace:column>
-                    <ace:column  headerText="nom" >
-                        <h:outputText  value="#{contact.nom}"/>
+                    <ace:column  headerText="sex" >
+                        <h:outputText  value="#{user.sex}"/>
                     </ace:column>
-                    <ace:column  headerText="taille" >
-                        <h:outputText  value="#{contact.taille}"/>
-                    </ace:column>
-                    <ace:column  headerText="age" >
-                        <h:outputText  value="#{contact.age}"/>
+                    <ace:column  headerText="height" >
+                        <h:outputText  value="#{user.height}"/>
                     </ace:column> 
+
             </ace:dataTable>
         </h:form>
     </h:body>

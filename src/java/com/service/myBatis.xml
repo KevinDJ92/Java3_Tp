@@ -23,5 +23,6 @@
           <mapper resource="com/mapper/CityMapper.xml" />
           <mapper resource="com/mapper/SearchMatchMapper.xml" />
           <mapper resource="com/mapper/UserContactMapper.xml"/>
+          <mapper resource="com/mapper/SearchMapper.xml"/>
     </mappers>
 </configuration>

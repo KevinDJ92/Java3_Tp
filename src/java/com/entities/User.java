@@ -18,13 +18,22 @@ public class User {
     private Integer id_city;
     private String phone_number;
     private String url_profile_image;
-
+    private int age;
     private Boolean is_online;
     private Date date_signed_up;
     
     private Preferences preferences;
     private List<Favorite> favoriteList;
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+    
+    
     public Integer getId_user() {
         return id_user;
     }
