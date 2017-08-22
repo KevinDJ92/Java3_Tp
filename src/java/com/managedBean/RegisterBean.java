@@ -20,7 +20,9 @@ import java.util.Random;
 
 import javax.inject.Named;
 import javax.annotation.PostConstruct;
+
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
@@ -30,15 +32,15 @@ import javax.servlet.http.Part;
 import org.icefaces.ace.component.checkboxbuttons.CheckboxButtons;
 import org.joda.time.LocalDate;
 
+@ManagedBean
 @Named(value = "registerBean")
 @ViewScoped
 public class RegisterBean implements Serializable {  
     // Users
     private User user, usernameInDB, emailInDB;
-    
     // Pages
     private String registerPage = "register", loginPage = "login", redirect = "?redirect=true";
-   
+    
     private int choixLangue;
     
     private ArrayList<SelectItem> choix;
@@ -52,6 +54,12 @@ public class RegisterBean implements Serializable {
     private String charactersASCII;
     private static Random rand;
    
+    // Preferences
+    private String min_age;
+    private String max_age;
+    private String min_height;
+    private String max_height;
+    
     // Height
     private List<String> heightList;
     private String heightWithCm;
@@ -63,6 +71,7 @@ public class RegisterBean implements Serializable {
     
     public RegisterBean() {
         user = new User();
+        
         heightList = new ArrayList<>();
         joursListe = new ArrayList<>();
         moisListe = new ArrayList<>();
@@ -127,8 +136,7 @@ public class RegisterBean implements Serializable {
                 HashFunction hash = new HashFunction();
                 user.setHash_password(hash.getHash(password + user.getSalt_password()));
                 
-                LocalDate dateOfBirth = new LocalDate(annee, mois, jour);                
-               
+                LocalDate dateOfBirth = new LocalDate(annee, mois, jour);                         
                 // BUG !!! Returns a date that is 1 day less the the original date 
                 Date dateSql = DateFunctions.localdateToDate(dateOfBirth);
                 user.setDate_of_birth(dateSql);
@@ -138,7 +146,7 @@ public class RegisterBean implements Serializable {
                 UserManager.insertUser(user);
                 
                 afficherForm1 = false;
-                afficherForm2 = true;
+                afficherForm2 = true;         
             }
             else {
                FacesMessage msg = new FacesMessage("Email is not unique");
@@ -153,7 +161,27 @@ public class RegisterBean implements Serializable {
         }  
     }
     
-    public String completeRegistration(){
+    public String completeRegistration(){ 
+        int min_ageInt = Integer.parseInt(min_age);
+        int max_ageInt = Integer.parseInt(max_age);
+        int min_heightInt = Integer.parseInt(min_height);
+        int max_heightInt = Integer.parseInt(max_height);
+        
+         // Pour le moment il faut faire une appel a la base de donner pour 
+        // chercher le user id pour la preferences
+        User userTemp = UserManager.selectUserByName(user);
+        user.setId_user(userTemp.getId_user()); 
+        
+        user.getPreferences().setId_user(user.getId_user());
+        user.getPreferences().setMin_age(min_ageInt);
+        user.getPreferences().setMax_age(max_ageInt);
+        user.getPreferences().setMin_height(min_heightInt); 
+        user.getPreferences().setMax_height(max_heightInt);
+   
+        System.out.println("id_user " + user.getPreferences().getId_user()
+            + " min_age " + user.getPreferences().getMin_age() + " max_age " + user.getPreferences().getMax_age()
+            + " min_height " + user.getPreferences().getMin_height() + " max_height " + user.getPreferences().getMax_height());
+        
         PreferencesManager.insertPreferences(user.getPreferences());
   
         return loginPage + redirect;
@@ -217,7 +245,7 @@ public class RegisterBean implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
-    
+
     public int getChoixLangue() {
         return choixLangue;
     }
@@ -272,6 +300,38 @@ public class RegisterBean implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getMin_age() {
+        return min_age;
+    }
+
+    public void setMin_age(String min_age) {
+        this.min_age = min_age;
+    }
+
+    public String getMax_age() {
+        return max_age;
+    }
+
+    public void setMax_age(String max_age) {
+        this.max_age = max_age;
+    }
+
+    public String getMin_height() {
+        return min_height;
+    }
+
+    public void setMin_height(String min_height) {
+        this.min_height = min_height;
+    }
+
+    public String getMax_height() {
+        return max_height;
+    }
+
+    public void setMax_height(String max_height) {
+        this.max_height = max_height;
     }
 
     public List<String> getHeightList() {
