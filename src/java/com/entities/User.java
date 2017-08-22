@@ -25,6 +25,10 @@ public class User {
     private Preferences preferences;
     private List<Favorite> favoriteList;
 
+    public User() {
+       preferences = new Preferences();
+    }
+    
     public Integer getId_user() {
         return id_user;
     }

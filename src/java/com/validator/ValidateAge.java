@@ -15,10 +15,9 @@ public class ValidateAge implements Validator{
         FacesMessage msg;
         
         String ageString = (String)value;
-   
-        if(isInteger(ageString, 10)){
-            int age = Integer.parseInt(ageString);
-            
+        int age = Integer.parseInt(ageString);
+        
+//        if(isInteger(ageString, 10)){
             if (age > 18){
                 msg = new FacesMessage("The age inputed is not a number, and therefore invalid");
                 msg.setSeverity(FacesMessage.SEVERITY_WARN);
@@ -29,13 +28,12 @@ public class ValidateAge implements Validator{
                 msg.setSeverity(FacesMessage.SEVERITY_WARN);
                 throw new ValidatorException(msg);
             } 
-        }
-        else {
-            msg = new FacesMessage("The age inputed is not a number, and therefore invalid");
-            msg.setSeverity(FacesMessage.SEVERITY_FATAL);
-      
-            throw new ValidatorException(msg);
-        }
+//        } else {
+//            msg = new FacesMessage("The age inputed is not a number, and therefore invalid");
+//            msg.setSeverity(FacesMessage.SEVERITY_FATAL);
+//      
+//            throw new ValidatorException(msg);
+//        }
     }
     
     // The radix in the function is the number's base system
