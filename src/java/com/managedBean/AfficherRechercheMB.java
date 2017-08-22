@@ -31,6 +31,7 @@ public class AfficherRechercheMB {
     public void initData(){
         user = new User();
         pref = new Preferences();
+        lUser = new ArrayList<User>();
         lUser =(ArrayList<User>) UserManager.selectAllUser();
         parms = new HashMap<String, Object>(); 
 
