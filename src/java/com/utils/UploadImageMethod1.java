@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import javax.servlet.http.Part;
 
-public class UploadImage {
+public class UploadImageMethod1 {
      public static void doUpload(Part image){
         try {
             InputStream in = image.getInputStream();

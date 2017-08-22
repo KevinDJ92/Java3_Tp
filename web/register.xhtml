@@ -11,7 +11,7 @@
         </h:head>
         <h:body>
             <h:form enctype="multipart/form-data">
-                <ace:panel header="Registration Form">
+                <ace:panel header="Registration Form" rendered="#{registerBean.afficherForm1}">
                     <aside class="marge">
                         <ace:simpleSelectOneMenu value="#{registerBean.choixLangue}" styleClass="position" valueChangeListener="#{registerBean.changerLangueListener}" >
                             <f:selectItem itemValue="0" itemLabel="Anglais" />
@@ -30,13 +30,13 @@
                     <aside class="marge">
                         <ace:textEntry id="firstname" label="#{msg.firstname}" labelPosition="left" value="#{registerBean.user.first_name}"
                                        required="true" requiredIndicator="(*)">
-<!--                           <f:validateLength minimum="2" />-->
+                         <f:validateLength minimum="2" />
                         </ace:textEntry> 
                     </aside>   
                     <aside class="marge">
                         <ace:textEntry id="lastname" label="#{msg.lastname}" labelPosition="left" value="#{registerBean.user.last_name}"
                                        required="true" requiredIndicator="(*)" >
-                           <!--<f:validateLength minimum="2" />-->
+                        <f:validateLength minimum="2" />
                         </ace:textEntry> 
                     </aside>
                      <aside class="marge">
@@ -99,7 +99,41 @@
                          </ace:checkboxButtons>
                     </aside>  
                     <aside class="button">
-                        <h:commandButton value="Register" action="#{registerBean.userIsUnique}" />
+                        <h:commandButton value="Submit" action="#{registerBean.userIsUnique}" />
+                    </aside>
+                </ace:panel>
+                <ace:panel header="Preferences Form" rendered="#{registerBean.afficherForm2}">             
+                    <aside class="marge">
+                        <ace:simpleSelectOneMenu id="sex_preference" label="#{msg.sex_preference}" value="#{registerBean.user.preferences.sex_preference}"  required="true">
+                            <f:selectItem itemLabel="Men" itemValue="men"/>
+                            <f:selectItem itemLabel="Women" itemValue="women"/>
+                            <f:selectItem itemLabel="Both" itemValue="both"/>
+                         </ace:simpleSelectOneMenu>
+                    </aside>
+                    <aside class="marge">
+                        <ace:textEntry id="min_age" label="#{msg.min_age}" labelPosition="left" value="#{registerBean.user.preferences.min_age}">
+                         <f:validateLength minimum="2" maximum="3"/>
+                         <f:validator validatorId = "ageValid" />
+                        </ace:textEntry> 
+                    </aside>   
+                    <aside class="marge">
+                        <ace:textEntry id="max_age" label="#{msg.max_age}" labelPosition="left" value="#{registerBean.user.preferences.max_age}">
+                        <f:validateLength minimum="2" maximum="3"/>
+                        <f:validator validatorId = "ageValid" />
+                        </ace:textEntry> 
+                    </aside>
+                    <aside class="marge">
+                         <ace:textEntry id="min_height" label="#{msg.min_height}" labelPosition="left" value="#{registerBean.user.preferences.min_height}">
+                            <f:validateLength minimum="3" maximum="3"/>
+                        </ace:textEntry>
+                    </aside>
+                    <aside class="marge">
+                        <ace:textEntry id="max_height" label="#{msg.max_heiht}" labelPosition="left" value="#{registerBean.user.preferences.max_height}" >
+                            <f:validateLength minimum="3" maximum="3"/>
+                        </ace:textEntry>
+                    </aside>  
+                     <aside class="button">
+                         <h:commandButton value="Submit" action="#{registerBean.completeRegistration()}" />
                     </aside>
                 </ace:panel>
             </h:form>

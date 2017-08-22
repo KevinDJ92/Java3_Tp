@@ -1,6 +1,6 @@
 package com.managedBean;
 
-import com.utils.DateConverter;
+import com.utils.DateFunctions;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class DateMb implements Serializable{
         LocalDate birthday = new LocalDate(annee, mois, jour);
         LocalDate dateAujourdhui = LocalDate.now();
         
-        Date date = DateConverter.localdateToDate(birthday);
+        Date date = DateFunctions.localdateToDate(birthday);
         int diff = Years.yearsBetween(birthday, dateAujourdhui).getYears();
         
         msgRetour = "Birthday: " + birthday +  "\nAge: " + diff;   
@@ -77,7 +77,7 @@ public class DateMb implements Serializable{
     }
     
      public void changeDays(){
-        nbJour = DateConverter.getLastDayOfMonth(mois, annee);
+        nbJour = DateFunctions.getLastDayOfMonth(mois, annee);
      
         joursListe = new ArrayList<>();
       

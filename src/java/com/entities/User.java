@@ -21,7 +21,8 @@ public class User {
 
     private Boolean is_online;
     private Date date_signed_up;
-    Preferences preferences;
+    
+    private Preferences preferences;
     private List<Favorite> favoriteList;
 
     public Integer getId_user() {

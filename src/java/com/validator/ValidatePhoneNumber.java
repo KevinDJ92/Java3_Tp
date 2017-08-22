@@ -14,13 +14,14 @@ public class ValidatePhoneNumber implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         FacesMessage msg;
         String phoneNumber = (String)value;
+ 
+        String pattern = "[0-9]{10}";
         
-   
-//        if(!Pattern.matches(pattern, phoneNumber)){
-//            msg = new FacesMessage("Phone number invalid");
-//            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-//        
-//            throw new ValidatorException(msg);
-//        }
+        if(!Pattern.matches(pattern, phoneNumber)){
+            msg = new FacesMessage("Phone number invalid");
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+        
+            throw new ValidatorException(msg);
+        }
     }
 }

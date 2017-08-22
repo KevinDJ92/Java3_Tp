@@ -2,8 +2,9 @@ package com.utils;
 
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
+import org.joda.time.Years;
 
-public class DateConverter {
+public class DateFunctions {
      public static final DateTimeZone jodaTzUTC = DateTimeZone.forID("UTC");
      public static final int JANUARY = 1;
      public static final int DECEMBER = 12;
@@ -16,6 +17,7 @@ public class DateConverter {
     }
 
     // from  LocalDate to java.sql.Date:
+    // THERE IS A BUG IT GIVE A DATE 1 day less the the valid one
     public static java.sql.Date localdateToDate(LocalDate ld) {
         if(ld == null) return null;
         return new java.sql.Date(
@@ -32,5 +34,12 @@ public class DateConverter {
         }
 
     return lastDay;
+    }
+    
+    public static final Years calculateAgeWithBitchDay(LocalDate birthday){
+        LocalDate now = new LocalDate();
+        Years age = Years.yearsBetween(birthday, now);
+       
+        return age; 
     }
 }
