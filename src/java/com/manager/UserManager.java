@@ -2,6 +2,8 @@ package com.manager;
 
 import com.entities.User;
 import com.service.ConnexionBD;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
@@ -46,7 +48,7 @@ public class UserManager {
         session.close();
     }
     
-    public static List<User> selectAllUser() {
+        public static List<User> selectAllUser() {
         List<User> lUser = null;
         SqlSession session = ConnexionBD.getSession();
         
@@ -54,4 +56,19 @@ public class UserManager {
         session.close();
         return lUser;
     }
+        public static User getUserPreferences(User user){
+        User user1 = null;   
+        SqlSession session = ConnexionBD.getSession();
+  
+        user = session.selectOne("com.mapper.SearchMatchMapper.getUserPreferences", user.getId_user());
+        session.close();
+        return user1;
+        }
+        
+        public static List<User> getPreferredUser(HashMap param){
+            SqlSession session = ConnexionBD.getSession();
+            List<User> listUser = session.selectList("com.mapper.SearchMatchMapper.getPreferredUser", param);
+            session.close();
+            return listUser;
+        }
 }

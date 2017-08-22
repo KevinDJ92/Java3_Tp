@@ -1,3 +1,4 @@
+
 package com.managedBean;
 
 import com.entities.UserContact;
@@ -8,7 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedProperty;
 import javax.inject.Named;
+
 
 @Named(value = "afficherContactMB")
 @SessionScoped
@@ -16,13 +19,16 @@ public class AfficherContactMB implements Serializable{
     private ArrayList<UserContact> mesDemande;
     private boolean isEmpty;
     private ArrayList<User> mesContact;
-    private int id_user_test;
+    @ManagedProperty(value="#{loginBean}")
+    private LoginBean loginbean;
+    
+    private User user;
     
          @PostConstruct
     public void initData(){
-        id_user_test = 1;
+        user = loginbean.getUser();
         isEmpty = true;
-        mesDemande = (ArrayList<UserContact>) ContactManager.GetAllContactById(id_user_test);
+        mesDemande = (ArrayList<UserContact>) ContactManager.GetAllContactById(user.getId_user());
         mesContact = getUserFromContact(mesDemande);
     }
     
